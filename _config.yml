@@ -120,9 +120,9 @@ comments:
   # Giscus options › https://giscus.app
   giscus:
     repo: https://github.com/BartOevering/bartoevering.github.io # <gh-username>/<repo>
-    repo_id:
-    category:
-    category_id:
+    repo_id: R_kgDONQpC5A
+    category: General
+    category_id: DIC_kwDONQpC5M4Ck8VC
     mapping: # optional, default to 'pathname'
     strict: # optional, default to '0'
     input_position: # optional, default to 'bottom'
