@@ -142,7 +142,7 @@ peer-XX.XX.XX.XX-tunnel-vti  up       2 hours  125K/68K        XX.XX.XX.XX     N
 
 I’m not completely happy with the current configuration of the Ubiquiti though. The reason for that is that the Ubiquiti USG is announcing way too many IP-ranges. To fix this it’s possible to filter the IP-ranges that a router announces. However, I’d like to prevent the use of an import and export filter on the Ubiquiti side because I want to keep the intelligence of the network as much as possible on the VyOS router. Sadly, I didn’t find a nice way of applying filters yet but the current configuration still works well. With the CLI showing that the tunnel is up, I’m wondering if the GUI also shows this status as I did quite some manual configuration. Luckily it shows the status as green as shown in the image.
 
-![UBNT UI](ubnt-ui.png)
+![UBNT UI](/assets/img/2021-03-15-vyos-rebuild/ubnt-ui.png)
 
 ## *Layer 2 Tunneling Protocol VPN*
 In the design, I’ve stated that I want to be able to remotely connect to the network from any location that has a working internet connection. For me, this is essential to reach VM’s but can also be used when I’m on holiday to tunnel my traffic to a point in the Netherlands or when connected to an untrusted Wi-Fi connection. This possibility will be realized by using the *Layer 2 Tunneling Protocol* (L2TP) in combination with a centralized user account.

@@ -66,7 +66,7 @@ So, with all these previous labs, am I looking into a new version of the lab? I 
 
 This whole lab is anyway *because I can* so why not add some high-speed networking? Would benefit the vSAN replication traffic as well. So, let's aim for 25-40 Gbps of network speed between the servers. When I'm busy with network connectivity anyway, at this moment I have a 1 Gbps uplink to the core network which could be upgraded to 10 Gbps if the port is UTP so that would be an awesome upgrade as well. When that version is finished, I'll definitely write a new blog to show how this configuration has ended up.
 
-<img src="https://media.giphy.com/media/ZLruFuC8hQoUw/giphy.gif" />
+<img src="https://media.giphy.com/media/ZLruFuC8hQoUw/giphy.gif" alt="robot" />
 
 ## Closing thoughts
 Thanks for reading! Hopefully, you found it interesting and maybe you’ve even learned something new! Want to read more about my version 3 lab? Leave your email address down below to subscribe! Any questions or just want to leave a remark? Please do so, I’m always curious to read what you think of my content. Enjoy your day!

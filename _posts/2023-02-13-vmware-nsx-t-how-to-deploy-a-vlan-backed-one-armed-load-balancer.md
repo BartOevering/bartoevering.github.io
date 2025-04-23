@@ -62,7 +62,7 @@ nsxedgelb01> get log-file syslog | find "ha-cluster"
 I’ve recorded the console output of my session with NSX edge- nsxedgelb01. Here I show the High Availability status, show the present Virtual Routing and Forwarding (VRF’s), and all interface information.
 
 <script src="/assets/js/asciinema-player.min.js"></script>
-<link rel="stylesheet" href="/assets/css/asciinema-player.css">
+<link rel="stylesheet" href="/assets/asciinema/asciinema-player.css">
 <div id="asciinema"> </div>
 <script>AsciinemaPlayer.create('/assets/img/2023-02-13-one-armed-load-balancer/tmpxbegab7e-ascii.cast', document.getElementById('asciinema'), {poster: "npt:1:23", speed: "3", });</script>
 
@@ -83,7 +83,7 @@ Next, an ‘uplink’ profile is needed to give additional information about the
 
 Then there are two *Transport Zones* needed. It’s also possible to use the default transport zones that come with VMware NSX but I’ve decided to not always use the default profiles but to add my own. Therefore, I’ve added two transport zones, one for VLAN and one for Overlay.
 
-![transport zones](n/assets/img/2023-02-13-one-armed-load-balancer/sx-manager/transport-zones.png)
+![transport zones](/assets/img/2023-02-13-one-armed-load-balancer/nsx-manager/transport-zones.png)
 
 With the transport zones created, I added a *segment* that will host the Virtual IP (VIP) addresses for the load balancer. The VIP address is the address that is used by the clients to reach, in this example, a website that is load balanced. I’ve decided to use VLAN 82 for these addresses and I created an NSX segment on the VLAN transport zone accordingly.
 

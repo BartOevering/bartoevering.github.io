@@ -74,7 +74,7 @@ _Remove the VM from inventory_
 _SSH to host and move the `vmsn` and `vmsd` files to tmp folder_
 
 <script src="/assets/js/asciinema-player.min.js"></script>
-<link rel="stylesheet" href="/assets/css/asciinema-player.css">
+<link rel="stylesheet" href="/assets/asciinema/asciinema-player.css">
 <div id="asciinema"> </div>
 <script>AsciinemaPlayer.create('/assets/img/2021-12-01-removing-snapshot/tmpi78knj72-ascii.cast', document.getElementById('asciinema'), {poster: "npt:1:23", speed: "3", });</script>
 _Asciinema recording of moving the `vmsn` and `vmsd` files to tmp folder_

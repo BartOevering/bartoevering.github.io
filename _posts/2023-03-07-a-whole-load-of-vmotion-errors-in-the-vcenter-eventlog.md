@@ -67,7 +67,7 @@ With the ESXi node in maintenance mode, the first step in trying to resolve the 
 
 I outlined two output rules here that are very important, `mkdir: can’t create directory ‘var/log/nsx’: Input/output error`. They are interesting because, why is the NSX process not able to create this log folder? A quick check with `df -h` shows that the scratch partition is a whooping 0 bytes big. Well, that is definitively not right, it should show some hundred gigabyte. The Dell PowerEdge servers used in this infrastructure have a 32 GB SD card where VMware ESXi is installed. Following VMware’s best practice, the scratch partition was moved off the SD card and on to an NFS location. Because of the monthly Windows updates, this NFS location was temporarily not available during the day, but all should function now. However, the ESXi node seems to be convinced that the NFS location is still inaccessible, making it impossible for NSX to write a log towards and thus for the `nsx-opsAgent` to start probably. This is all strange since the last messages of the restart clearly stated `opsAgent started`.
 
-![df -h](esxi_df-h.png)
+![df -h](/assets/img/2023-03-07-vmotion-errors-vcenter/esxi_df-h.png)
 ![esxicli storage nfs list](/assets/img/2023-03-07-vmotion-errors-vcenter/esxi_nfs.png)
 
 ## The solution
