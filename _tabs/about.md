@@ -4,7 +4,7 @@ icon: fas fa-info-circle
 order: 4
 ---
 
-![Bart Oevering](/assets/img/avatar.jpg){: .left }
+![Bart Oevering](/assets/img/avatar.jpeg){: .left }
 
 I’m Bart Oevering an Infrastructure Consultant working for [Conscia](https://www.conscia.com/nl/). I’ve been working at Conscia since September 2018 and what a trip it already has been! I had a massive learning curve for the VMware products since, up till that point, I didn’t work with any of the VMware products yet. During my studies (intermediate vocational education and university of applied science), I got certified in Citrix XenApp 5.5 and Citrix XenServer 5 but in VMware? No, I didn’t do anything with VMware so I was up for a treat- more about that in future blogs. In 2025 I've decided to started to use VirtuWise as a brand and place any professional work under there, including this blog.
 
@@ -20,7 +20,7 @@ Besides the physical activities, I love to write the occasional blurt of text in
 Since I’m working for Conscia I’ve obtained a lot of additional knowledge. Here are the certifications that I managed to pass so far (last updated: 05-2025):
 
 
-<p><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script></p>
+<script type="text/javascript" async src="https:////cdn.credly.com/assets/utilities/embed.js"></script>
 
 
 ### Special awards/programs
