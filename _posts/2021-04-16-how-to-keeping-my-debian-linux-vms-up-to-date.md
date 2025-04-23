@@ -11,9 +11,8 @@ redirect_from:
 published: true
 toc: true
 
-img_path: /assets/img/2021-04-16-debian-update/
 image:
-  path: meme_powershell.jpeg
+  path: /assets/img/2021-04-16-debian-update/meme_powershell.jpeg
   alt: Matrix Powershell is mandatory
 ---
 
@@ -36,7 +35,7 @@ Now, Python is not something I often use, however, I do often use Microsoft Powe
 
 Also, important is that the script needs to be dynamic- I don’t want to feed in a static list of VM’s to update and find out after a couple of months that I missed VM’s. The script must therefore build a list with Debian VM’s that are powered on in VMware vCenter and install the updates on those VMs. The script will use that list of VMs to connect to every VM via SSH and install all the relevant updates similar to the command I would normally put when I log in. The script will now update one VM at a time but as a future improvement, I’d like to make it process the VM updates in parallel to be more efficient. With all these steps in mind, I decided it’s easier to create a flowchart with all that the script needs to do and which commands I need as you can find below.
 
-![flowchart of the goal](flow.png)
+![flowchart of the goal](/assets/img/2021-04-16-debian-update/flow.png)
 
 With the flowchart in mind, the fun part starts, building the code.
 
@@ -195,7 +194,7 @@ Stop-Transcript
 
 With the script fully functional there is a nice transcript file stored on the disk that shows me all VMs are successfully updated and if something went wrong it’s also in this file. To make the console look good I also added some colors to the output the script will show.
 
-![Script Output](scripting_update_debian.png)
+![Script Output](/assets/img/2021-04-16-debian-update/scripting_update_debian.png)
 
 ## Closing thought
 I’m very happy with the script; I used it quite a few times now and it really made keeping the VM’s up-to-date way easier. Gone are the times where, when I login to a VM, I need to update VMs by hand. I just run the script, it runs for a few minutes and everything is fully up-to-date. As with everything in IT, there’s probably something out there making it even easier and more granular on what updates to install but this works like a charm for me!

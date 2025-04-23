@@ -11,9 +11,8 @@ redirect_from:
 published: true
 toc: true
 
-img_path: /assets/img/2021-01-21-hardware-connectivity
 image:
-  path: /NewDC.png
+  path: /assets/img/2021-01-21-hardware-connectivity/NewDC.png
 ---
 
 The [hardware is now in the datacenter]({% post_url 2021-01-15-new-hardware %}) but there are various ways that the servers could be connected. This means planning the connections between the servers, from the server to the internet, and connecting power. In this blog, I’ll take you along in the design that I made on how to connect the servers.
@@ -21,7 +20,7 @@ The [hardware is now in the datacenter]({% post_url 2021-01-15-new-hardware %}) 
 ## The nuts and bolts
 I love to make drawings in Microsoft Visio so I’ve created an overview of how the servers need to be connected. I created the overview before I went to the datacentre and configured the ports accordingly. Each server has four Network Interface Cards (NICs) that need to provide all connectivity for the workloads. The four NICs have either one or multiple ports and in total, a server has eight ports at 1 Gbps, two ports at 10 Gbps, and one 1 Gbps connection for remote management. During the installation I forgot the take a photo of the backside of the server, so that photo will come once I went to the datacentre again.
 
-![Datacenter connectivity](/NewDC.png)
+![Datacenter connectivity](/assets/img/2021-01-21-hardware-connectivity/NewDC.png)
 
 On the servers, I’ve got VMware ESXi installed which gives the possibility to separate different types of traffic. With the right configuration it’s possible to separate management traffic, vMotion, vSAN, vSAN Witness, and a [few more](https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.networking.doc/GUID-D4191320-209E-4CB5-A709-C8741E713348.html). Most of the network traffic categories are not in use in the lab but I do want to separate management and vMotion traffic. VMware vMotion is a technique that makes it possible to relocate a workload from one server to the other. Relocating requires a massive bandwidth as it needs to transmit the complete workload -active memory and hard disk- to the other server. Management of the ESXi has a really low bandwidth requirement but is absolutely essential and need to be guaranteed.
 

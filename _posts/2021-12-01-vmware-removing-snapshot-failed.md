@@ -11,9 +11,8 @@ redirect_from:
 published: true
 toc: true
 
-img_path: /assets/img/2021-12-01-removing-snapshot/
 image:
-  path: deleting-vm-snapshots.jpg
+  path: /assets/img/2021-12-01-removing-snapshot/deleting-vm-snapshots.jpg
   alt: Deleting VM snapshots? It's never going to happen!
 ---
 
@@ -38,7 +37,7 @@ For a client of [RedLogic](https://redlogic.nl/), we did a project where a new i
 
 As there were about 100 VMs needed to be migrated, this procedure would need to be done around 100 times. After a couple of VMs, I decided to be lazier and I created a script to do the job for me. I found out that there is a PowerCLI option to [connect to multiple vCenters](https://developer.vmware.com/docs/powercli/latest/vmware.vimautomation.core/commands/set-powercliconfiguration/#Default) at the same time and changed my script accordingly. I programmed the script and everything went as expected, except that there was still a snapshot left on the VM. When trying to remove it manually through vCenter it throws a very useful error; `A general system error occurred: Fault cause: vim.fault.GenericVmConfigFault`
 
-![Operation failed](remove-all-snapshots-failed.png)
+![Operation failed](/assets/img/2021-12-01-removing-snapshot/remove-all-snapshots-failed.png)
 _A general system error occurred: Fault cause: vim.fault.GenericVmConfigFault_
 
 ## How to fix this error?
@@ -62,16 +61,16 @@ So, the first thing that I needed to do was to make sure that I get a maintenanc
 
 I tried to reproduce this error in my lab on my vCenter 7.0 U1 but there error didn’t occur. I created the screenshots from the customer environment so I redacted quite some information so I can show them here. In my own lab, I am able to move snapshot files around so I created a clip with [asciinema](https://asciinema.org/) where I move the files via ssh on an ESXi host. When you just have one VM the `vmsn` and `vmsd` files can also be moved via the vCenter UI.
 
-![A general system error occurred: Fault cause: vim.fault.GenericVmConfigFault](0-Error.png)
+![A general system error occurred: Fault cause: vim.fault.GenericVmConfigFault](/assets/img/2021-12-01-removing-snapshot/0-Error.png)
 _A general system error occurred: Fault cause: vim.fault.GenericVmConfigFault_
 
-![Finding the datastore where the VM files are saved](1-check-vmx-location.png)
+![Finding the datastore where the VM files are saved](/assets/img/2021-12-01-removing-snapshot/1-check-vmx-location.png)
 _Finding the datastore where the VM files are saved_
 
-![Remove the VM from inventory](2-remove-from-inventory.png)
+![Remove the VM from inventory](/assets/img/2021-12-01-removing-snapshot/2-remove-from-inventory.png)
 _Remove the VM from inventory_
 
-![SSH to host and move the `vmsn` and `vmsd` files to tmp folder](3-ssh-and-move-snapshots.png)
+![SSH to host and move the `vmsn` and `vmsd` files to tmp folder](/assets/img/2021-12-01-removing-snapshot/3-ssh-and-move-snapshots.png)
 _SSH to host and move the `vmsn` and `vmsd` files to tmp folder_
 
 <script src="/assets/js/asciinema-player.min.js"></script>
@@ -80,19 +79,19 @@ _SSH to host and move the `vmsn` and `vmsd` files to tmp folder_
 <script>AsciinemaPlayer.create('/assets/img/2021-12-01-removing-snapshot/tmpi78knj72-ascii.cast', document.getElementById('asciinema'), {poster: "npt:1:23", speed: "3", });</script>
 _Asciinema recording of moving the `vmsn` and `vmsd` files to tmp folder_
 
-![Register the VM back into vCenter](4-add-vmx-to-vcenter.png)
+![Register the VM back into vCenter](/assets/img/2021-12-01-removing-snapshot/4-add-vmx-to-vcenter.png)
 _Register the VM back into vCenter_
 
-![See the consolidation needed status on the VM](5-consolidation-needed.png)
+![See the consolidation needed status on the VM](/assets/img/2021-12-01-removing-snapshot/5-consolidation-needed.png)
 _See the consolidation needed status on the VM_
 
-![Consolidate!](6-consolidate.png)
+![Consolidate!](/assets/img/2021-12-01-removing-snapshot/6-consolidate.png)
 _Consolidate!_
 
-![vCenter task in progress](7-task.png)
+![vCenter task in progress](/assets/img/2021-12-01-removing-snapshot/7-task.png)
 _vCenter task in progress_
 
-![Snapshot has been removed!](8-all-is-good.png)
+![Snapshot has been removed!](/assets/img/2021-12-01-removing-snapshot/8-all-is-good.png)
 _Snapshot has been removed!_
 
 The images show the full process of moving the `vmsd` and `vmsn` files, these files are key to the process of getting the snapshot files consolidated. The `vmsd` is a database file that holds information about all the snapshots and this is the primary source of information for the snapshot manager in vCenter. Without this file, vCenter doesn’t know which snapshots are present were and can only recover by consolidating any present deltas disk files. The `vmsn` is a file that contains the active memory state of the VM at the time of the snapshot. This file is no longer needed as the VM is now in shutdown and there is no possibility to consolidate the ‘active’ memory anyway.

@@ -10,9 +10,8 @@ redirect_from:
 
 published: true
 
-img_path: /assets/img/2021-03-15-vyos-rebuild/
 image:
-  path: remote.jpg
+  path: /assets/img/2021-03-15-vyos-rebuild/remote.jpg
 ---
 Welcome to part 4 of my blog series about the network configuration that I build for my VyOS routers! In part 1 I gave a design overview followed by part 2 with the firewall, DHCP, DNS, and NTP configuration. In the third part I configured the interfaces and added VRRP. In this part, I will dive into the world of remote connections.
 

@@ -7,7 +7,6 @@ tags: [VMware, Tech, vSAN, Spanning-Tree]
 
 published: true
 
-img_path: /assets/img/2023-08-15-network-maintenance-vsan/
 image:
   path: https://media0.giphy.com/media/a7Lx9u8QWV26I/giphy.gif
 ---
@@ -16,7 +15,7 @@ Time for a new blog, this time about the impact of network maintenance on VMWare
 ## The network
 Traditionally a network consists of some switches and when a loop was created, often to provide redundant paths, the *Spanning-Tree Protocol* (STP) took care of that. STP works with a so-called "root bridge" to where all routes are calculated towards, thus eliminating loops. One flavor of the STP is the *Rapid Spanning Tree Protocol* (RSTP) which was used by this customer. RSTP lowers the needed time for the calculations down to roughly 15 seconds limiting downtime in the network. The original network design is shown in the following network diagram:
 
-![HDL of the actual environment](network_design_stp.png)
+![HDL of the actual environment](/assets/img/2023-08-15-network-maintenance-vsan/network_design_stp.png)
 
 What we see here is that STP eliminated the loops by blocking network traffic on the links shown with a red X. This way the network is loop-free and will keep functioning. During this planned maintenance window the upmost two switches would be replaced by new, quicker, hardware. Also, the old SAN switches (in orange) would be decommissioned. With the decommissioning of the SAN switches the root bridge would change from a current SAN switch to the new upper switch in SER A. The updating of the root bridge means that calculations need to be performed to find the new root bridge and these calculations will block all network traffic on connected ports for roughly 15 seconds. Those 15 seconds have a big impact on connected services.
 
@@ -27,7 +26,7 @@ VMware vSAN is VMware's solution to provide storage to VMs that is distributed o
 
 I'm not going to deep dive into how vSAN works and how to configure it but what is important to know is that vSAN provides the possibility for the VM and the hard disk to be active on separate ESXi nodes. So the VM can have its CPU and memory resources on ESXi-04 while the disk of the VM is active on ESXi-01, ESXi02 and ESXi-03. This means that there is a huge dependency on the network since ESXi-04 must be able to reach the other ESXi nodes to process disk I/O otherwise the VM will crash.
 
-![VMware vSAN 3-nodes architecture](vmware-vsan.png)
+![VMware vSAN 3-nodes architecture](/assets/img/2023-08-15-network-maintenance-vsan/vmware-vsan.png)
 _[VMware vSAN 3-nodes architecture](https://4sysops.com/archives/vmware-vsan-3-nodes-mode/)_
 
 ## In conclusion
@@ -52,25 +51,25 @@ Steps that were needed (before 7.0 U3) come down to this:
 ### Power on vSAN
 In VMware environments, the vCenter server is rather important and is, therefore, one of the first, if not the first, VM to be powered on again. After the maintenance to the network was finished the ESXi nodes were booted again so all VMs should be accessible and the VMs ready to boot. We logged in to the ESXi node that we know had the vCenter server VM and start searching for the VM but sadly all the VMs show the status "Invalid" which lead to a big shock, did we just lose all our VMs? A quick check on the CLI shows that the vSAN health is shown as "red" just as the object health (well luckily there are still objects).
 
-![VMware ESXi vSAN status invalid](vmware-esxi-invalid.png)
-![VMware ESXi vSAN status invalid cli](vmware-esxi-invalid-cli.png)
+![VMware ESXi vSAN status invalid](/assets/img/2023-08-15-network-maintenance-vsan/vmware-esxi-invalid.png)
+![VMware ESXi vSAN status invalid cli](/assets/img/2023-08-15-network-maintenance-vsan/vmware-esxi-invalid-cli.png)
 
 ### Troubleshooting steps
 One of the first thing I decided to check is the vSAN health via the CLI command `esxcli vsan debug object health summary get`. This command shows the availability of the objects known to VMware vSAN. Equal to the vSphere host client, it did not give a good image as it showed 563 objects as "inaccessible". 
 
-![VMware vSAN object health summary](vsan-object-health.png)
+![VMware vSAN object health summary](/assets/img/2023-08-15-network-maintenance-vsan/vsan-object-health.png)
 
 I tried convincing VMware to reload the VMs from the CLI, but sadly this also didn't help anything. In the end the VM status stayed the same. Also restarting an vSAN node didn't help with chancing the status of the VMs although the boot took some time to recover vSAN services.
 
-![vmin-cmd vmsvc/reload](esxi-reload-vms.png)
+![vmin-cmd vmsvc/reload](/assets/img/2023-08-15-network-maintenance-vsan/esxi-reload-vms.png)
 
 With that information in mind I started looking deeper into the vSAN environment, maybe check if all nodes are participating in the vSAN datastore? With the command `esxcli vsan cluster get` it's possible to see cluster information but most importantly, the hostnames of the nodes providing services to vSAN. With this output it became clear that only one location seem to participating (only A servers show up), and the issue might still be in the network.
 
-![esxcli vsan cluster get](esxcli-vsan-cluster-get.png)
+![esxcli vsan cluster get](/assets/img/2023-08-15-network-maintenance-vsan/esxcli-vsan-cluster-get.png)
 
 It turned out that the spanning-tree was not configured right, this completely isolated the three locations (A, B, and witness) preventing vSAN to get to the required minimum of two locations to be able to access the VMs. After restoring the spanning-tree to the designed state the nodes were able to communicate and now the cluster did list all the nodes as expected. VMware vSAN then automatically started to repair the VM files. 
 
-![esxcli vsan cluster get](esxcli-vsan-cluster-get-1.png)
+![esxcli vsan cluster get](/assets/img/2023-08-15-network-maintenance-vsan/esxcli-vsan-cluster-get-1.png)
 
 
 ## Key take aways
@@ -90,7 +89,7 @@ So long story short, here's a list of things to keep in mind while troubleshooti
 
 But most of all, make sure you create an emergency plan on how to shutdown/power on the vSAN environment! 
 
-![plan](create-a-plan.jpg)
+![plan](/assets/img/2023-08-15-network-maintenance-vsan/create-a-plan.jpg)
 
 ## Closing thoughts
 Thanks for reading! Hopefully, you found it interesting, and maybe you’ve even learned something new! Want to get a notification when I post a new blog? Leave your email address down below to subscribe! Any questions or just want to leave a remark? Please do so, I’m always curious to read what you think of my content. Enjoy your day!

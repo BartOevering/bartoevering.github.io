@@ -10,9 +10,8 @@ redirect_from:
 
 published: true
 
-img_path: /assets/img/2021-03-15-vyos-rebuild/
 image:
-  path: traffic-routing.jpg
+  path: /assets/img/2021-03-15-vyos-rebuild/traffic-routing.jpg
 ---
 Welcome to the 5th and final part of my blog series about the network configuration that I have built for my VyOS routers! In part 1 I gave a design overview followed by part 2 with the firewall, DHCP, DNS, and NTP configuration. In the third part, I configured the interfaces and added a feature called VRRP. Then, in part 4 I made sure that I can connect from anywhere in the world to this network and created a Site-to-Site tunnel with my home network, and in this last part, I’ll be configuring network routing.
 
@@ -30,7 +29,7 @@ There are a few ways of achieving dynamic routing; one of the most likely option
 
 BGP stands for the Border Gateway Protocol which allows routers to exchange routing information about the infrastructure. BGP routers will tell each other which IP-ranges they have connected to them and this way other routers learn where which IP-range can be reached. I started configuring BGP but my home router decided to start announcing a few too many IP-ranges via BGP. My Ubiquiti USG decided that it would also be fun to announce its own public IP-range via BGP and therefore the VyOS router became unreachable from my home -OEPS.
 
-![facepalm](facepalm.png)
+![facepalm](/assets/img/2021-03-15-vyos-rebuild/facepalm.png)
 
 This showed me that BGP was working as it should but now I lost access to the VyOS routers. I turned off BGP on the Ubiquiti USG and gained full access again but there is a lesson to be learned here, I needed to protect the BGP of my VyOS routers from having any unwanted routes injected. In the future, I might want to connect more locations to the VyOS routers therefore I’m trying to prevent having a big dependency on the BGP configuration of any remote location like my home. I then set up import and export filters on both VyOS routers which make sure that only allowed IP-ranges are placed in the routing table. All other IP-ranges will not be added to the routing table of the VyOS routes and thus protecting them. Since, at this moment, I only connect my home network to the VyOS routers, I made a filter that only allows 10.0.xx.xx/16 to be received and deny all other IP-ranges.
 

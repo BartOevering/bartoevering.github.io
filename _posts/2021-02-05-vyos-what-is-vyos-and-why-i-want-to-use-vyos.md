@@ -13,7 +13,7 @@ toc: true
 
 img_path: /assets/img/2021-02-05-why-vyos
 image:
-  path: /vyos-logo.webp
+  path: /assets/img/2021-02-05-why-vyos/vyos-logo.webp
   alt: VyOS logo
 ---
 
@@ -36,7 +36,7 @@ VyOS, a software-based firewall and router -what would be the use for that? Well
 
 When I’m at home, I have a [Ubiquiti USG](https://www.ui.com/unifi-routing/usg/) router that has a permanent Site-to-Site IPSEC VPN connection to link the VyOS router and the USG with each other. This allows communication from the lab to my home and the other way around. Again, this is handy for management and is always nice for when I’m playing around with stuff like home automation. My home network is therefore an extension of the lab network that I have in the datacentre.
 
-![HLD of infrastructure](/NewDC_Infra.png)
+![HLD of infrastructure](/assets/img/2021-02-05-why-vyos/NewDC_Infra.png)
 _HLD overview of infrastructure_
 
 At this moment I’m still working on the best configuration for VyOS; there’s literally a world of possible configurations. I do have a working configuration based on a single VyOS router but there’s always room for improvements and I’d like to expand redundancy with a second VyOS router and have them work together. This, for example, could be with the use of the Virtual Router Redundancy Protocol (VRRP) that creates the possibility to configure the routes such that they take over each other’s tasks. For example, if one router fails or is turned off the second one will take over the tasks of the first. This could be handy for when I take one ESXi host offline for maintenance or to upgrade the VyOS router to a new version. The configuration needs tweaking anyway -I have a remote-VPN possibility at the moment but it’s not yet working as I want since it doesn’t provide internet access right now.

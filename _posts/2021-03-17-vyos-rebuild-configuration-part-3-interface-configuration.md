@@ -10,9 +10,8 @@ redirect_from:
 
 published: true
 
-img_path: /assets/img/2021-03-15-vyos-rebuild/
 image:
-  path: portal_firewall.jpg
+  path: /assets/img/2021-03-15-vyos-rebuild/portal_firewall.jpg
 ---
 Welcome to part 3 of my blog series about the network configuration that I build for my VyOS routers! In part 1 I gave a design overview followed by part 2 with the firewall, DHCP, DNS, and NTP configuration. In this third part, I’ll be configuring the interfaces and describing something special called ‘VRRP’.
 
@@ -30,7 +29,7 @@ To separate the VLAN in VMware vCenter I’ve added a few “*Distributed Port G
 
 For now, I’ve chosen to add each port group -VLAN- on a separate network adapter for the VyOS router. The number of VLANs might change in the future but adding more VLANs is quite easy in this way. However, I’m already thinking of changing the hardware to just have two network adapters on the VyOS routers. This because there is a [hard limit of 10](https://configmax.vmware.com/guest?vmwareproduct=vSphere&release=vSphere%207.0&categories=1-0) network adapters per VM. In the new situation, the LAN network adapter will be a ‘[trunk](https://en.wikipedia.org/wiki/Trunking#VLAN)‘ where all VLANs are allowed. This construction would make adding more VLANs to the VyOS routers easier and more scalable. For this blog, however, I will use a separate network adapter per VLAN and this works just as well.
 
-![edit vms](edit-vm.png)
+![edit vms](/assets/img/2021-03-15-vyos-rebuild/edit-vm.png)
 
 With all the interfaces connected it’s time to start thinking about IP-addresses. Without an IP-address communication is not possible. As the main IP-address for the redundant interface, I would like to use an IP-address that ends on one (10.10.xx.1) purely because it’s the first possible IP-address in the IP-range. This IP-address will be the default gateway address and therefore is reserved for the VRRP configuration that I create later.
 

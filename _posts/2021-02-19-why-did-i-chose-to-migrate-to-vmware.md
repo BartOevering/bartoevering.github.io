@@ -13,7 +13,7 @@ toc: true
 
 img_path: /assets/img/2021-02-19-why-vmware/
 image:
-  path: meme_change.jpg
+  path: /assets/img/2021-02-19-why-vmware/meme_change.jpg
   alt: Change is coming meme
 ---
 
@@ -21,8 +21,8 @@ In the blog about "[New Hardware]({% post_url 2021-01-15-new-hardware %})" I've 
 
 ## First off: what do Citrix and VMware even do?
 
-![Citrix XenServer](Citrix_icon.png){: w="200" .left }
-![VMware vCenter](vCenter.png){: w="200" .right }
+![Citrix XenServer](/assets/img/2021-02-19-why-vmware/Citrix_icon.png){: w="200" .left }
+![VMware vCenter](/assets/img/2021-02-19-why-vmware/vCenter.png){: w="200" .right }
 
 <br /><br /><br /><br /><br /><br /><br /><br />
 
@@ -38,7 +38,7 @@ To illustrate how virtualization works, I’ve created a visualization. Below th
 
 The image in the middle is showing the way that enterprises use virtualization on their servers. This is classified as a type 1 hypervisor. In the image, the hypervisor is labeled as VMware but this could also be Citrix, KVM, Hyper-V, etc. In my lab, I also use the type 1 hypervisor. The type 1 hypervisor runs the hypervisor OS straight on top of the hardware. In that hypervisor, it’s possible to run multiple OSs. Within each OS you can run any application just as with the traditional server. With a type 1 hypervisor, the use of resources is more efficient and now we can run many OSs in parallel. The communication with the hardware is made efficient as that’s the sole task of the type 1 hypervisor OS.
 
-![Different ways of virtualization](virtualization.png)
+![Different ways of virtualization](/assets/img/2021-02-19-why-vmware/virtualization.png)
 
 The far-right image shows a type 2 virtualization. We have a traditional server/workstation -this could be your laptop or computer for example. On that workstation, a normal OS is installed -like Windows or Linux. On that OS a software package is installed that allows running many OSs in parallel, this software package could for example be [VMware Workstation](https://www.vmware.com/products/workstation-pro.html) or [VirtualBox](https://www.virtualbox.org/). As the underlying OS also has the possibility to run applications, it’s really an additional layer that makes communication to the hardware less efficient. This type of hypervisor can be useful for testing purposes, running containers, or security reasons. A VM is quite easy to install or delete, it runs its own isolated OS where outside access to files is limited and it’s hard to break out of that VM -however not [completely impossible](https://en.wikipedia.org/wiki/Virtual_machine_escape).
 
@@ -46,7 +46,7 @@ With the type 2 hypervisor, the underlying OS also consumes resources to run its
 
 ## So why the change from Citrix to VMware?
 
-![Change is coming meme](meme_change.jpg)
+![Change is coming meme](/assets/img/2021-02-19-why-vmware/meme_change.jpg)
 
 Well, I mainly used Citrix because many options could be used for free. They even gave free access to their *Long Term Service Release* (LTSR) images which was awesome. As time went on, Citrix decided to change its licensing model. With the change in licensing model, the LTSR imaged became a paid product and the not LTSR version released a new version about every other month Next to that, my old server (Dell PowerEdge R710) had still iDRAC6 that only works via an insecure TLS 1.0 connection. TLS 1.0 is not supported any more by any browser and that made updating XenServer impossible. In the end, the server had an uptime -was not updated for- of almost 850 days, OEPS!
 
@@ -58,7 +58,7 @@ VMware offers a free version of ESXi that, out-of-the-box, works great. But if y
 
 I don’t know. I mean, I liked their product in the past but that is mainly based on experience from 2010. Since then I haven’t worked with XenApp or XenDesktop although I did my graduation project for the Deltion College with a combination of XenServer and XenApp. Citrix XenApp I’ve never used since. However, Citrix XenServer I did use a lot, we had our ups and downs, but I managed to learn a lot. Although that could also have to do with the hoster where I leased the (often broken) hardware at that time. Now running XenServer just feels a bit ‘old skool’ compared to the slick HTML5 interface of VMware ESXi/vCenter. In XenServer advanced features for the virtual Distributed Switch (vDS) need to be installed with an additional VM. In VMware ESXi, it is installed in the Linux kernel of an ESXi host. This makes it a lightweight solution not taking up to many resources of the hyporvisor.
 
-![Comparison of the XenServer UI vs vCenter UI](XenServer_vs_vCenter.png)
+![Comparison of the XenServer UI vs vCenter UI](/assets/img/2021-02-19-why-vmware/XenServer_vs_vCenter.png)
 
 Because of Citrix XenServer, I’ve been playing around on the *Command Line Interface* (CLI) a lot and even managed to change a hard disk RAID-level without downtime. I probably still have the text files that I used to document what I did somewhere, it was all good fun. All this playing around really gave me an extra edge on the job. A while ago a customer came to RedLogic that wanted their Citrix VM’s to be migrated to VMware. Migrating a VM from one vendor to the other is not easy. Even with all the open standards for virtualization one cannot simply pick up a VM from Citrix and drop it on a VMware ESXi host. However, because of all the fiddling around that I did in the past, I was able to automate a great part of the migration immensely limiting the needed downtime for the customer. This resulted in a happy customer, happy boss, and therefore, happy me.
 

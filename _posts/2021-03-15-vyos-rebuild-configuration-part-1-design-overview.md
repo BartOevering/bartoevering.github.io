@@ -10,9 +10,8 @@ redirect_from:
 
 published: true
 
-img_path: /assets/img/2021-03-15-vyos-rebuild/
 image:
-  path: Westerbork_Synthese_Radio_Telescoop.jpg
+  path: /assets/img/2021-03-15-vyos-rebuild/Westerbork_Synthese_Radio_Telescoop.jpg
 ---
 This is the first part of a blog series about the network configuration that I build for my VyOS VM’s. In an earlier blog “[VyOS? What is VyOS and why I want to use VyOS!]({% post_url 2021-02-05-vyos-what-is-vyos-and-why-i-want-to-use-vyos %})” I’ve already put my thoughts and created a design however this blog series will be more about the why but mainly about the how.
 
@@ -33,7 +32,7 @@ As explained before I installed two VMware ESXi hosts with local storage, which 
 
 When I now translate the network design into a drawing, it should look similar to the schema below. Because this is my lab environment it changes quite often but these main parts of the configuration should give me a solid basis for playing around.
 
-![HLD](NewDC_Infra.png)
+![HLD](/assets/img/2021-03-15-vyos-rebuild/NewDC_Infra.png)
 
 In the top part of the network design, there is a *Remote User* that is able to connect securely to the network from any location also there is my home network connection on the top right. The use of the *Virtual Router Redundancy Protocol* (VRRP) allows the VyOS routers to share an IP-address between them -more about that in the ‘interface configuration’ part. VRRP will allow me to choose which VyOS router will be handling the network traffic.
 

@@ -10,9 +10,8 @@ redirect_from:
 
 published: true
 
-img_path: /assets/img/2021-03-15-vyos-rebuild/
 image:
-  path: portal_firewall.jpg
+  path: /assets/img/2021-03-15-vyos-rebuild/portal_firewall.jpg
 ---
 
 Welcome to part 2 of my blog series about the network configuration that I build for my VyOS routers! In part 1 I gave a design overview and in this part, I’ll write about the firewall configuration and configuration for services like DHCP, DNS, and NTP.
@@ -179,7 +178,7 @@ set firewall syn-cookies 'enable'
 
 When looking through the configuration you can see that I use multiple groups of firewall rules- in total six. In the VyOS routers, it’s possible to apply a firewall group on a certain direction of network traffic, this being the directions IN, LOCAL, and OUT. To visualize where these firewall groups -or filters- are applied, I’ve created a schematic overview in the figure below. The IN filter is the first filter that network traffic encounters and therefore this is the best place to filter out not-needed traffic this prevents that unwanted network traffic from consuming valuable computing power of the router.
 
-![in-out-local firewall](Firewalling.png)
+![in-out-local firewall](/assets/img/2021-03-15-vyos-rebuild/Firewalling.png)
 
 When the traffic is allowed through the IN filter it will continue to be routed and then there are two flavors of network traffic; network traffic that is meant for the router -LOCAL- or traffic that leaves the router via a network interface -OUT. An example of traffic that is meant for the router is management network traffic like ssh or a dynamic routing protocol as BGP (I’ll write about routing in part 5 of this blog series). An example of OUT network traffic is a VM accessing something that is on the internet. It is only possible to link one firewall group to a traffic direction and is unique for IPv4 and IPv6.
 

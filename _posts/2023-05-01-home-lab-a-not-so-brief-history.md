@@ -10,9 +10,8 @@ redirect_from:
 
 published: true
 
-img_path: /assets/img/2023-05-01-home-lab-history/
 image:
-  path: top_image.jpg
+  path: /assets/img/2023-05-01-home-lab-history/top_image.jpg
 ---
 
 For a while now I've been thinking about building a new, more beefy, version of my home lab. I'm running some nested VMware labs, which require a lot of hardware. This renewal will involve, once again, replacing the underlying hardware. Thinking about this brought me back to the good old days when I bought my first own server, which was of course sponsored by my father. I figured, why not do a write-up blog about all the different versions of 'home lab' I've had?
@@ -20,7 +19,7 @@ For a while now I've been thinking about building a new, more beefy, version of 
 ## My first server
 While still living at home, and during my vocational education, my dad supported me to run a server at home. The server was an Acer Alto G330 Mk2 tower that had a whopping 4 GB of RAM. For the *Operating System* (OS), I installed Windows Server 2008 R2 and, actually, the main thing the whole server did, was being a router with [Microsoft Routing and Remote Access](https://docs.microsoft.com/en-us/troubleshoot/windows-server/networking/set-up-routing-remote-access-intranet). Since it was the main router in the house, I learned to plan any changes or reboots. With the server offline, my family would complain that the internet connection is not available. Also, stability was very important because my multiplayer games would lag like crazy. This server was a “because I can” project, so I also installed IIS for hosting a website. My main hosting, however, was with a renowned hosting company in the Netherlands. After running this server at home for about a year and a half or so, I decided that it was time for a change, and I ended up selling the Acer. For the next couple of years, I just ran my QNAP NAS at home to host a storage solution for my family.
 
-![Acer Alto G330 Mk2 tower](Acer_Alto_G330_Mk2.webp)
+![Acer Alto G330 Mk2 tower](/assets/img/2023-05-01-home-lab-history/Acer_Alto_G330_Mk2.webp)
 _Acer Alto G330 Mk2 tower_
 
 ## Renting hardware
@@ -34,7 +33,7 @@ Well, let's just say I came back on the thin provisioning decision quickly! If y
 
 Working with these rental servers was great fun and I learned a lot, but it also had its downsides. I once switched servers to refresh the XenServer installation and was confronted with an intermittently failing server. The uptime never really came above 20–30 days before it crashed, sadly the hardware diagnosing tool showed that everything was fine, so support didn't really want to do too much. Therefore, I ended up switching hardware again and all issues disappeared, and vanished into thin air.
 
-![So You Start Logo](so-you-start-logo.jpg)
+![So You Start Logo](/assets/img/2023-05-01-home-lab-history/so-you-start-logo.jpg)
 _So You Start Logo_
 
 ## Owning hardware
@@ -49,7 +48,7 @@ In September 2018, I started as a student at the University of Applied Sciences 
 
 Besides hosting stuff for school, the server was still mainly used to host the services that I started hosting on the SyS server. With the move to own hardware, they were all moved as well. So the server is also running VMs for things like web hosting with DNS, email and for managing the infrastructure I ran a virtual router in the shape of VyOS, and I've installed a Windows jump host.
 
-![Dell PowerEdge R710 - OeveringIT](1519796616523.jpg)
+![Dell PowerEdge R710 - OeveringIT](/assets/img/2023-05-01-home-lab-history/1519796616523.jpg)
 _Dell PowerEdge R710 with a OeveringIT logo_
 
 ### Version two
@@ -59,7 +58,7 @@ I ended up switching the R710 for the R720 around October 2020. At this time, I'
 
 The only main issue I now have is that there is a broken SD card in one of the servers which needs replacement. Other than that, I've had no hardware failure at all. This lab is my main playground for stuff while still providing web hosting services as I did in the past. At this point, I'm not actively marketing web hosting any more because it just takes up too much time. In the future, I need to see what I want with it, but for now, it'll just hang around.
 
-![Twee Dell PowerEdge R720s - OeveringIT](Dell-PowerEdge-R720.jpeg)
+![Twee Dell PowerEdge R720s - OeveringIT](/assets/img/2023-05-01-home-lab-history/Dell-PowerEdge-R720.jpeg)
 _Dell PowerEdge R720 without bezels_
 
 ### Version three

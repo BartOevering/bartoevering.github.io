@@ -11,9 +11,8 @@ redirect_from:
 published: true
 toc: true
 
-img_path: /assets/img/2022-01-01-vyos-xl2tpd/
 image:
-  path: vpn-tunnel.jpg
+  path: /assets/img/2022-01-01-vyos-xl2tpd/vpn-tunnel.jpg
 ---
 
 In a previous post that I wrote about VyOS, I’ve shown that the L2TP VPN is using 10.255.255.0 as an IP address. In this blog post, I’ll dive into why this is a problem for me and how to change that.

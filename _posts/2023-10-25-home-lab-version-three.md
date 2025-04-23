@@ -10,9 +10,8 @@ redirect_from:
 
 published: true
 
-img_path: /assets/img/2023-10-25-new-home-lab/
 image:
-  path: R730-Front.jpeg
+  path: /assets/img/2023-10-25-new-home-lab/R730-Front.jpeg
 ---
 
 Okay, okay I know I've just done a write-up about my home labs, and now I already start with a new version? Well, the idea for the write-up came to me since I was already thinking and working towards this new version. So this will be it! A huge upgrade for my (not so) home-lab where I'll more than double the available resources. This blog will focus on the hardware side since that's what I have. The servers are not yet fully ready to move to the datacenter, but hopefully, that'll be soon. So let's dive into the new hardware.
@@ -31,7 +30,7 @@ First a quick recap of version two. Version two consists of two Dell PowerEdge R
     - Intel(R) X520-DA2 (2x 10 Gbps)
     - Intel(R) Gigabit 4P I350-t (8x 1 Gbps)
 
-![Twee Dell PowerEdge R720s - OeveringIT](../2023-05-01-home-lab-history/Dell-PowerEdge-R720.jpeg)
+![Twee Dell PowerEdge R720s - OeveringIT](/assets/img/2023-05-01-home-lab-history/Dell-PowerEdge-R720.jpeg)
 _Dell PowerEdge R720 without bezels_
 
 ### Things I'd like to change for a new version
@@ -67,22 +66,22 @@ Since I work a lot with VMware and also hardware it's sometimes easy to get my h
   - NVIDIA Tesla M10 GPU
   - 64GB SD Card with IDSDM
 
-![Twee Dell PowerEdge R730s - OeveringIT](R730-Front.jpeg)
+![Twee Dell PowerEdge R730s - OeveringIT](/assets/img/2023-10-25-new-home-lab/R730-Front.jpeg)
 _Dell PowerEdge R730 front without bezels_
 
-![Twee Dell PowerEdge R730s - OeveringIT](R730_top.jpeg)
+![Twee Dell PowerEdge R730s - OeveringIT](/assets/img/2023-10-25-new-home-lab/R730_top.jpeg)
 _Dell PowerEdge R730 top view_
 
-![Twee Dell PowerEdge R730s - OeveringIT](R730-disk1.jpeg)
+![Twee Dell PowerEdge R730s - OeveringIT](/assets/img/2023-10-25-new-home-lab/R730-disk1.jpeg)
 _Dell PowerEdge R730 OS disk_
 
-![Twee Dell PowerEdge R730s - OeveringIT](R730-disk2.jpeg)
+![Twee Dell PowerEdge R730s - OeveringIT](/assets/img/2023-10-25-new-home-lab/R730-disk2.jpeg)
 _Dell PowerEdge R730 OS disk back_
 
-![Twee Dell PowerEdge R730s - OeveringIT](R730-NVMe.jpeg)
+![Twee Dell PowerEdge R730s - OeveringIT](/assets/img/2023-10-25-new-home-lab/R730-NVMe.jpeg)
 _Dell PowerEdge R730 NVMe location_
 
-![Twee Dell PowerEdge R730s - OeveringIT](R730-back.jpeg)
+![Twee Dell PowerEdge R730s - OeveringIT](/assets/img/2023-10-25-new-home-lab/R730-back.jpeg)
 _Dell PowerEdge R730 back with the 40 Gbps NICs_
 
 So, this is really some serious hardware! A single R730 already has more resources than **both** R720s combined! And I've got two of these bad boys! This is really some cool stuff to have as the basis of my home lab. I'm not sure what I'll do with it. For example, I have no immediate use case for the GPUs in the servers, they also require licensing which is usually not cheap to get. But other than that, the cluster will have 176 Ghz(!) with 1.536 GB (!) of RAM and just over 40 TB of raw storage, and 40 Gbps network between the server! Wauw! Let's see what I changed since I got the hardware.
