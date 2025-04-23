@@ -9,10 +9,10 @@ redirect_from:
   - /tech/hardware/new-hardware/
 
 published: true
-#img_path: /2021-01-15-new-hardware
+img_path: /assets/img/2021-01-15-new-hardware
 
 image:
-  path: /assets/img/2021-01-15-new-hardware/01_servers_in_the_rack.jpg
+  path: /01_servers_in_the_rack.jpg
   alt: New servers in the rack!
 ---
 
@@ -22,12 +22,12 @@ In May 2020 I decided that enough is enough! These beauties belong in a nice ser
 
 After this decision to get the two R720’s into the datacentre, time went by so quickly. Now the R720 servers are in use and they are working awesome! The servers are co-located in DC2 of XS4ALL and both servers have access to a 1 Gbps link to the XS4ALL network. In the datacentre, I have a Service Level Agreement (SLA) that has a fair use policy for power and network traffic. I noticed that I can stash quite some traffic before they start asking questions.
 
-![The new servers in the rack](/assets/img/2021-01-15-new-hardware/01_servers_in_the_rack.jpg)
+![The new servers in the rack](/01_servers_in_the_rack.jpg)
 
 It was quite tricky though, I needed to migrate the VM’s from Citrix XenServer, the hypervisor I had running on the single R710, to VMware ESXi. Luckily, I already used my R710 with Citrix XenServer in a customer case to test migrate from XenServer to ESXi. In that project, I was able to automate the migration and I was able to re-use parts of the code for the migration (I’ll see whether I can share some code snippets in a future blog).
 
 ## The Specs
-![Available resources in the cluster](/assets/img/2021-01-15-new-hardware/02_resources_available_in_vCenter.png)
+![Available resources in the cluster](/02_resources_available_in_vCenter.png)
 
 Now the interesting part: what hardware am I running in those R720’s? Well, both ESXi hosts have roughly the same hardware, except one server has additional disks as this is the arrangement that I made with the earlier-mentioned friend. So what hardware are we talking about?
 
