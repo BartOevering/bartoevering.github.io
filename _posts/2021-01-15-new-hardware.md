@@ -9,7 +9,6 @@ redirect_from:
   - /tech/hardware/new-hardware/
 
 published: true
-img_path: /assets/img/2021-01-15-new-hardware
 
 image:
   path: /assets/img/2021-01-15-new-hardware/01_servers_in_the_rack.jpg
